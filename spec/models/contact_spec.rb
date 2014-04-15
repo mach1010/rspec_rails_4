@@ -1,39 +1,39 @@
 require 'spec_helper'
 
 describe Contact do
+  
+  it "has a valid factory" do
+    expect(build(:contact)).to be_valid
+  end
+  
   it "is valid with a firstname, lastname and email" do
-    contact = Contact.new(
-      firstname: 'Aaron',
-      lastname: 'Sumner',
-      email: 'tester@example.com')
+    contact = build(:contact)
     expect(contact).to be_valid
   end
 
   it "is invalid without a firstname" do
-    expect(Contact.new(firstname: nil)).to have(1).errors_on(:firstname)
+    contact = build(:contact, firstname: nil)
+    expect(contact).to have(1).errors_on(:firstname)
   end
 
   it "is invalid without a lastname" do
-    expect(Contact.new(lastname: nil)).to have(1).errors_on(:lastname)
+    contact = build(:contact, lastname: nil)
+    expect(contact).to have(1).errors_on(:lastname)
   end
 
   it "is invalid without an email address" do
-    expect(Contact.new(email: nil)).to have(1).errors_on(:email)
+    contact = build(:contact, email: nil)
+    expect(contact).to have(1).errors_on(:email)
   end
 
   it "is invalid with a duplicate email address" do
-    Contact.create(
-      firstname: 'Joe', lastname: 'Tester',
-        email: 'tester@example.com')
-    contact = Contact.new(
-      firstname: 'Jane', lastname: 'Tester',
-        email: 'tester@example.com')
+    create(:contact, email: "tester@example.com")
+    contact = build(:contact, email: 'tester@example.com')
     expect(contact).to have(1).errors_on(:email)
   end
 
   it "returns a contact's full name as a string" do
-    contact = Contact.new(firstname: 'John', lastname: 'Doe',
-      email: 'johndoe@example.com')
+    contact = build(:contact, firstname: 'John', lastname: 'Doe')
     expect(contact.name).to eq 'John Doe'
   end
 
