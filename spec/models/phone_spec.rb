@@ -5,12 +5,8 @@ describe Phone do
 
   it "does not allow duplicate phone numbers per contact" do
     contact = create(:contact)
-    create(:home_phone,
-      contact: contact,
-      phone: '785-555-1234')
-    mobile_phone = build(:mobile_phone,
-      contact: contact,
-      phone: '785-555-1234')
+    create(:home_phone, contact: contact, phone: "785-555-1234")
+    mobile_phone = build(:mobile_phone, contact: contact, phone: "785-555-1234")
     expect(mobile_phone).to have(1).errors_on(:phone)
   end
 
