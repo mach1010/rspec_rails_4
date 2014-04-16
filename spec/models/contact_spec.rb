@@ -43,11 +43,11 @@ describe Contact do
 
   describe "filter last name by letter" do
     before :each do
-      @smith = Contact.create(firstname: 'John', lastname: 'Smith',
+      @smith = create(:contact, firstname: 'John', lastname: 'Smith',
         email: 'jsmith@example.com')
-      @jones = Contact.create(firstname: 'Tim', lastname: 'Jones',
+      @jones = create(:contact, firstname: 'Tim', lastname: 'Jones',
         email: 'tjones@example.com')
-      @johnson = Contact.create(firstname: 'John', lastname: 'Johnson',
+      @johnson = create(:contact, firstname: 'John', lastname: 'Johnson',
         email: 'jjohnson@example.com')
     end
 
