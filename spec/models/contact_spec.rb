@@ -6,6 +6,10 @@ describe Contact do
     expect(build(:contact)).to be_valid
   end
   
+  it "has three phone numbers" do
+    expect(create(:contact).phones.count).to eq 3
+  end
+  
   it "is valid with a firstname, lastname and email" do
     contact = build(:contact)
     expect(contact).to be_valid
